@@ -5,27 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio - Windows 95 Edition</title>
   
+  <!-- Windows 98/95 CSS Framework -->
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
 
   <style>
+    /* Fullscreen Desktop Area (excluding taskbar height) */
     body {
       background-color: #008080;
       font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: calc(100vh - 38px); /* Strictly fits space above 38px taskbar */
       overflow: hidden;
       user-select: none;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding-top: 25px;
+      align-items: center; /* Perfectly centers window vertically and horizontally */
     }
 
+    /* Window Container */
     .window-container {
       position: relative;
       width: 92vw;
-      max-width: 450px;
+      max-width: 440px;
       z-index: 10;
     }
 
@@ -41,10 +43,10 @@
     }
 
     .avatar {
-      width: 56px;
-      height: 56px;
+      width: 60px;
+      height: 60px;
       border: 2px inset #fff;
-      background: #808080;
+      background: #c0c0c0;
       object-fit: cover;
     }
 
@@ -52,6 +54,7 @@
       margin-top: 12px;
     }
 
+    /* Fixed Bottom Taskbar */
     .taskbar {
       position: fixed;
       bottom: 0;
@@ -72,17 +75,22 @@
       font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      padding: 2px 6px;
     }
 
     .taskbar-item {
-      height: 24px;
+      height: 26px;
       font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
   </style>
 </head>
 <body>
 
+  <!-- Main Window -->
   <div class="window window-container" id="portfolioWindow">
     <div class="title-bar" id="windowTitleBar">
       <div class="title-bar-text">User_Portfolio.exe</div>
@@ -95,7 +103,8 @@
 
     <div class="window-body">
       <div class="profile-header">
-        <div class="avatar"></div>
+        <!-- Local Redirect for Avatar -->
+        <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://win95icons.baltazarorchestra.com/static/images/icons/user.png';" />
         <div>
           <h4 style="margin: 0;">Your Name</h4>
           <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">Developer / Creator</p>
@@ -104,19 +113,19 @@
 
       <fieldset>
         <legend>About Me</legend>
-        <p style="font-size: 13px; margin: 4px 0;">Welcome to my desktop! I build web applications and retro UI experiments.</p>
+        <p style="font-size: 13px; margin: 4px 0;">Welcome to my desktop! I build web applications and custom software tools.</p>
       </fieldset>
 
       <fieldset style="margin-top: 8px;">
         <legend>Featured Projects</legend>
         <ul class="tree-view" style="background: #fff; padding: 6px;">
           <li>
-            <strong>Project 1: Web Engine</strong>
-            <p style="margin: 2px 0 4px 8px; font-size: 12px;">A high-performance JS web tool.</p>
+            <strong>Project 1: Web Application</strong>
+            <p style="margin: 2px 0 4px 8px; font-size: 12px;">A retro web interface built with standard JS/CSS.</p>
           </li>
           <li>
             <strong>Project 2: Mobile Utility</strong>
-            <p style="margin: 2px 0 0 8px; font-size: 12px;">Custom app concept built for mobile.</p>
+            <p style="margin: 2px 0 0 8px; font-size: 12px;">Custom mobile utility built on Android/Sketchware.</p>
           </li>
         </ul>
       </fieldset>
@@ -128,17 +137,22 @@
 
       <div class="status-bar">
         <p class="status-bar-field">Status: Ready</p>
-        <p class="status-bar-field">CPU: 2%</p>
+        <p class="status-bar-field">CPU Usage: 2%</p>
       </div>
     </div>
   </div>
 
+  <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">
-      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="14" height="14" alt="start" />
+      <!-- Authentic Windows 95 Start Flag Icon -->
+      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="16" height="16" alt="Start" />
       Start
     </button>
-    <button class="taskbar-item active">User_Portfolio.exe</button>
+    <button class="taskbar-item active">
+      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/executable-0.png" width="14" height="14" alt="App" />
+      User_Portfolio.exe
+    </button>
   </div>
 
   <script>
@@ -161,10 +175,12 @@
       windowElement.style.top = `${clientY - offsetY}px`;
     };
 
+    /* Mouse Events */
     titleBar.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
     document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
     document.addEventListener('mouseup', () => isDragging = false);
 
+    /* Mobile Touch Events */
     titleBar.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       startDrag(touch.clientX, touch.clientY);
