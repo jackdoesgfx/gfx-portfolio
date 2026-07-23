@@ -82,7 +82,7 @@
       display: flex;
       align-items: center;
       padding: 2px 4px;
-      padding-bottom: max(2px, env(safe-area-inset-bottom)); /* Handles phone swipe bar padding */
+      padding-bottom: max(2px, env(safe-area-inset-bottom));
       box-sizing: content-box;
       gap: 4px;
       z-index: 99999;
@@ -109,6 +109,7 @@
     .pixel-icon {
       width: 16px;
       height: 16px;
+      image-rendering: pixelated;
     }
   </style>
 </head>
@@ -128,7 +129,7 @@
 
       <div class="window-body">
         <div class="profile-header">
-          <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://raw.githubusercontent.com/win95arts/win95-icons/main/icons/user.png';" />
+          <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/start.png';" />
           <div>
             <h4 style="margin: 0;">Jack / jackdoesgfx</h4>
             <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">GFX Artist</p>
@@ -170,24 +171,13 @@
   <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">
-      <!-- Classic 4-Color Windows Logo -->
-      <svg class="pixel-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="2" width="6" height="5" fill="#F25022"/>
-        <rect x="8" y="2" width="6" height="5" fill="#7FBA00"/>
-        <rect x="1" y="8" width="6" height="5" fill="#00A4EF"/>
-        <rect x="8" y="8" width="6" height="5" fill="#FFB900"/>
-      </svg>
+      <!-- Authentic Win95 Start Flag Icon -->
+      <img class="pixel-icon" src="https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/start.png" alt="Start" />
       Start
     </button>
     <button class="taskbar-item active">
-      <!-- Classic App Executable Window Icon -->
-      <svg class="pixel-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="1" y="2" width="14" height="12" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
-        <rect x="2" y="3" width="12" height="3" fill="#000080"/>
-        <rect x="4" y="8" width="3" height="4" fill="#008080"/>
-        <rect x="8" y="8" width="5" height="1" fill="#808080"/>
-        <rect x="8" y="10" width="5" height="1" fill="#808080"/>
-      </svg>
+      <!-- Classic Win95 Program Executable Icon -->
+      <img class="pixel-icon" src="https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/programs24.png" alt="User_Portfolio.exe" />
       User_Portfolio.exe
     </button>
   </div>
