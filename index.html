@@ -5,63 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio - Windows 95 Edition</title>
   
-  <!-- Windows 95 CSS Framework -->
-  <link rel="stylesheet" href="https://unpkg.com/95.css" />
+  <!-- Rock-solid Windows CSS framework -->
+  <link rel="stylesheet" href="https://unpkg.com/98.css" />
 
   <style>
-    /* Desktop Environment Setup */
     body {
-      background-color: #008080; /* Authentic Win95 Teal */
+      background-color: #008080;
       font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
       margin: 0;
       padding: 0;
       height: 100vh;
       overflow: hidden;
       user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Floating Draggable Window */
+    /* Window Container */
     .window-container {
       position: absolute;
-      top: 80px;
-      left: 100px;
-      width: 480px;
-      max-width: 90vw;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #ffffff;
+      width: 92vw;
+      max-width: 450px;
+      z-index: 10;
     }
 
     .title-bar {
       cursor: move;
     }
 
-    .window-body {
-      background: #c0c0c0;
-      color: #000;
-      padding: 12px;
-    }
-
-    /* Content Styling */
     .profile-header {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
       margin-bottom: 12px;
     }
 
     .avatar {
-      width: 64px;
-      height: 64px;
+      width: 56px;
+      height: 56px;
       border: 2px inset #fff;
       background: #808080;
+      object-fit: cover;
     }
 
     .status-bar {
-      margin-top: 15px;
-      padding: 3px;
-      font-size: 11px;
+      margin-top: 12px;
     }
 
-    /* Taskbar at Bottom */
+    /* Bottom Taskbar */
     .taskbar {
       position: fixed;
       bottom: 0;
@@ -83,19 +75,17 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 2px 6px;
     }
 
     .taskbar-item {
-      padding: 3px 8px;
-      font-size: 12px;
-      height: 26px;
+      height: 24px;
+      font-size: 11px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Main Window -->
+  <!-- Window -->
   <div class="window window-container" id="portfolioWindow">
     <div class="title-bar" id="windowTitleBar">
       <div class="title-bar-text">User_Portfolio.exe</div>
@@ -108,40 +98,40 @@
 
     <div class="window-body">
       <div class="profile-header">
-        <img class="avatar" src="https://via.placeholder.com/64" alt="Avatar" />
+        <div class="avatar"></div>
         <div>
-          <h3 style="margin: 0;">Your Name</h3>
-          <p style="margin: 4px 0 0 0; color: #555;">Full-Stack Developer / Creator</p>
+          <h4 style="margin: 0;">Your Name</h4>
+          <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">Developer / Creator</p>
         </div>
       </div>
 
       <fieldset>
         <legend>About Me</legend>
-        <p>Welcome to my desktop! I build web applications, explore retro UI designs, and write clean code.</p>
+        <p style="font-size: 13px; margin: 4px 0;">Welcome to my desktop! I build web applications and retro UI experiments.</p>
       </fieldset>
 
-      <fieldset style="margin-top: 10px;">
+      <fieldset style="margin-top: 8px;">
         <legend>Featured Projects</legend>
-        <ul class="tree-view">
+        <ul class="tree-view" style="background: #fff; padding: 6px;">
           <li>
-            <strong>Project 1: Retro Web Engine</strong>
-            <p style="margin: 2px 0 6px 12px;">A high-performance JS library for styled components.</p>
+            <strong>Project 1: Web Engine</strong>
+            <p style="margin: 2px 0 4px 8px; font-size: 12px;">A high-performance JS web tool.</p>
           </li>
           <li>
-            <strong>Project 2: Pixel Canvas App</strong>
-            <p style="margin: 2px 0 0 12px;">Interactive canvas-based browser drawing app.</p>
+            <strong>Project 2: Mobile Utility</strong>
+            <p style="margin: 2px 0 0 8px; font-size: 12px;">Custom app concept built for mobile.</p>
           </li>
         </ul>
       </fieldset>
 
-      <div style="margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px;">
+      <div style="margin-top: 12px; display: flex; justify-content: flex-end; gap: 6px;">
         <button onclick="window.open('https://github.com', '_blank')">GitHub</button>
-        <button onclick="window.open('mailto:youremail@example.com')">Contact Me</button>
+        <button onclick="window.open('mailto:youremail@example.com')">Contact</button>
       </div>
 
-      <div class="status-bar field-row">
-        <p class="status-bar-field">Ready</p>
-        <p class="status-bar-field">CPU Usage: 2%</p>
+      <div class="status-bar">
+        <p class="status-bar-field">Status: Ready</p>
+        <p class="status-bar-field">CPU: 2%</p>
       </div>
     </div>
   </div>
@@ -149,13 +139,12 @@
   <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">
-      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="16" height="16" alt="win95 start" />
+      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="14" height="14" alt="start" />
       Start
     </button>
     <button class="taskbar-item active">User_Portfolio.exe</button>
   </div>
 
-  <!-- Drag-and-Drop JavaScript -->
   <script>
     const windowElement = document.getElementById('portfolioWindow');
     const titleBar = document.getElementById('windowTitleBar');
@@ -164,21 +153,34 @@
     let offsetX = 0;
     let offsetY = 0;
 
-    titleBar.addEventListener('mousedown', (e) => {
+    const startDrag = (clientX, clientY) => {
       isDragging = true;
-      offsetX = e.clientX - windowElement.offsetLeft;
-      offsetY = e.clientY - windowElement.offsetTop;
-    });
+      offsetX = clientX - windowElement.offsetLeft;
+      offsetY = clientY - windowElement.offsetTop;
+    };
 
-    document.addEventListener('mousemove', (e) => {
+    const moveDrag = (clientX, clientY) => {
       if (!isDragging) return;
-      windowElement.style.left = `${e.clientX - offsetX}px`;
-      windowElement.style.top = `${e.clientY - offsetY}px`;
-    });
+      windowElement.style.left = `${clientX - offsetX}px`;
+      windowElement.style.top = `${clientY - offsetY}px`;
+    };
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
+    // Mouse support
+    titleBar.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
+    document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
+    document.addEventListener('mouseup', () => isDragging = false);
+
+    // Mobile touch support
+    titleBar.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      startDrag(touch.clientX, touch.clientY);
     });
+    document.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const touch = e.touches[0];
+      moveDrag(touch.clientX, touch.clientY);
+    });
+    document.addEventListener('touchend', () => isDragging = false);
   </script>
 
 </body>
