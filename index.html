@@ -2,26 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Jack | GFX Artist Portfolio</title>
   
   <!-- Windows 98/95 CSS Framework -->
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
 
   <style>
-    /* Prevent overall screen scrolling and lock dimensions */
+    /* Lock html & body to absolute screen edges */
     html, body {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       overflow: hidden;
       background-color: #008080;
       font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
       user-select: none;
     }
 
-    /* Desktop Viewport (Leaves room for 38px Taskbar at bottom) */
+    /* Desktop Viewport (Leaves room for Taskbar) */
     .desktop {
       position: absolute;
       top: 0;
@@ -65,7 +70,7 @@
       margin-top: 12px;
     }
 
-    /* Taskbar Fixed Directly to Bottom Edge */
+    /* Taskbar Fixed Flush to Mobile Screen Bottom */
     .taskbar {
       position: fixed;
       bottom: 0;
@@ -77,7 +82,8 @@
       display: flex;
       align-items: center;
       padding: 2px 4px;
-      box-sizing: border-box;
+      padding-bottom: max(2px, env(safe-area-inset-bottom)); /* Handles phone swipe bar padding */
+      box-sizing: content-box;
       gap: 4px;
       z-index: 99999;
     }
@@ -103,7 +109,6 @@
     .pixel-icon {
       width: 16px;
       height: 16px;
-      image-rendering: pixelated;
     }
   </style>
 </head>
@@ -125,7 +130,7 @@
         <div class="profile-header">
           <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://raw.githubusercontent.com/win95arts/win95-icons/main/icons/user.png';" />
           <div>
-            <h4 style="margin: 0;">Jack • @jackdoesgfx</h4>
+            <h4 style="margin: 0;">Jack / jackdoesgfx</h4>
             <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">GFX Artist</p>
           </div>
         </div>
@@ -165,25 +170,20 @@
   <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">
-      <!-- Authentic Windows 95 Wavy Flag Icon -->
-      <img class="pixel-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUModelAQAAAABJRU5ErkJggg==" alt="Start" onerror="this.src='https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/start.png';" />
+      <!-- Classic 4-Color Windows Logo -->
       <svg class="pixel-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Pixel-accurate Win95 Flag -->
-        <path d="M1 2H7V8H1V2Z" fill="#008080"/>
-        <path d="M1 2H6V7H1V2Z" fill="#FF0000"/>
-        <path d="M8 1H15V7H8V1Z" fill="#00FF00"/>
-        <path d="M1 9H7V15H1V9Z" fill="#0000FF"/>
-        <path d="M8 8H15V14H8V8Z" fill="#FFFF00"/>
+        <rect x="1" y="2" width="6" height="5" fill="#F25022"/>
+        <rect x="8" y="2" width="6" height="5" fill="#7FBA00"/>
+        <rect x="1" y="8" width="6" height="5" fill="#00A4EF"/>
+        <rect x="8" y="8" width="6" height="5" fill="#FFB900"/>
       </svg>
       Start
     </button>
     <button class="taskbar-item active">
-      <!-- Classic Windows Exe / Application Icon -->
+      <!-- Classic App Executable Window Icon -->
       <svg class="pixel-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="0" y="1" width="16" height="14" fill="#C0C0C0"/>
         <rect x="1" y="2" width="14" height="12" fill="#FFFFFF" stroke="#000000" stroke-width="1"/>
         <rect x="2" y="3" width="12" height="3" fill="#000080"/>
-        <rect x="3" y="4" width="2" height="1" fill="#FFFFFF"/>
         <rect x="4" y="8" width="3" height="4" fill="#008080"/>
         <rect x="8" y="8" width="5" height="1" fill="#808080"/>
         <rect x="8" y="10" width="5" height="1" fill="#808080"/>
@@ -212,7 +212,6 @@
       windowElement.style.top = `${clientY - offsetY}px`;
     };
 
-    /* Mouse & Mobile Touch Events */
     titleBar.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
     document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
     document.addEventListener('mouseup', () => isDragging = false);
