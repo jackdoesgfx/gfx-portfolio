@@ -2,32 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>jackdoesgfx - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Jack | GFX Artist Portfolio</title>
   
   <!-- Windows 98/95 CSS Framework -->
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
 
   <style>
-    /* Fullscreen Desktop Area (excluding taskbar height) */
-    body {
-      background-color: #008080;
-      font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
+    /* Absolute Lock to Mobile Viewport Edges */
+    html, body {
       margin: 0;
       padding: 0;
-      height: calc(100vh - 38px); /* Strictly fits space above 38px taskbar */
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      background-color: #008080;
+      font-family: "Pixelated MS Sans Serif", "MS Sans Serif", Arial, sans-serif;
       user-select: none;
-      display: flex;
-      justify-content: center;
-      align-items: center; /* Perfectly centers window vertically and horizontally */
     }
 
-    /* Window Container */
+    /* Desktop Window Container (Centered above Taskbar) */
+    .desktop {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 38px; /* Room for taskbar */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
     .window-container {
-      position: relative;
-      width: 92vw;
+      width: 100%;
       max-width: 440px;
+      position: absolute;
       z-index: 10;
     }
 
@@ -54,11 +65,12 @@
       margin-top: 12px;
     }
 
-    /* Fixed Bottom Taskbar */
+    /* Taskbar Fixed Flush to Bottom Edge */
     .taskbar {
       position: fixed;
       bottom: 0;
       left: 0;
+      right: 0;
       width: 100%;
       height: 38px;
       background: #c0c0c0;
@@ -67,7 +79,7 @@
       align-items: center;
       padding: 2px 4px;
       box-sizing: border-box;
-      gap: 6px;
+      gap: 4px;
       z-index: 99999;
     }
 
@@ -77,80 +89,90 @@
       align-items: center;
       gap: 6px;
       padding: 2px 6px;
+      height: 28px;
     }
 
     .taskbar-item {
-      height: 26px;
+      height: 28px;
       font-size: 11px;
       display: flex;
       align-items: center;
       gap: 6px;
+      padding: 2px 8px;
+    }
+
+    .taskbar-icon {
+      width: 16px;
+      height: 16px;
+      image-rendering: pixelated;
     }
   </style>
 </head>
 <body>
 
-  <!-- Main Window -->
-  <div class="window window-container" id="portfolioWindow">
-    <div class="title-bar" id="windowTitleBar">
-      <div class="title-bar-text">User_Portfolio.exe</div>
-      <div class="title-bar-controls">
-        <button aria-label="Minimize"></button>
-        <button aria-label="Maximize"></button>
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-
-    <div class="window-body">
-      <div class="profile-header">
-        <!-- Local Redirect for Avatar -->
-        <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://win95icons.baltazarorchestra.com/static/images/icons/user.png';" />
-        <div>
-          <h4 style="margin: 0;">Jack / jackdoesgfx</h4>
-          <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">GFX Artist</p>
+  <!-- Desktop Screen Area -->
+  <div class="desktop">
+    <div class="window window-container" id="portfolioWindow">
+      <div class="title-bar" id="windowTitleBar">
+        <div class="title-bar-text">User_Portfolio.exe</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
         </div>
       </div>
 
-      <fieldset>
-        <legend>About Me</legend>
-        <p style="font-size: 13px; margin: 4px 0;">Welcome to my desktop! I create GFX thumbnails and icons for developers and content creators.</p>
-      </fieldset>
+      <div class="window-body">
+        <div class="profile-header">
+          <img class="avatar" src="assets/avatar.png" alt="Avatar" onerror="this.src='https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/start.png';" />
+          <div>
+            <h4 style="margin: 0;">Jack / jackdoesgfx</h4>
+            <p style="margin: 2px 0 0 0; color: #555; font-size: 12px;">GFX Artist</p>
+          </div>
+        </div>
 
-      <fieldset style="margin-top: 8px;">
-        <legend>Featured Projects</legend>
-        <ul class="tree-view" style="background: #fff; padding: 6px;">
-          <li>
-            <strong>Tools used in my works>
-            <p style="margin: 2px 0 4px 8px; font-size: 12px;">Modelling: Nomad Sculpt Visuals: iBis Paint X</p>
-          </li>
-          <li>
-            <strong>Project 2: Mobile Utility</strong>
-            <p style="margin: 2px 0 0 8px; font-size: 12px;">Custom mobile utility built on Android/Sketchware.</p>
-          </li>
-        </ul>
-      </fieldset>
+        <fieldset>
+          <legend>About Me</legend>
+          <p style="font-size: 13px; margin: 4px 0;">Welcome to my desktop! I create GFX thumbnails and icons for developers and content creators.</p>
+        </fieldset>
 
-      <div style="margin-top: 12px; display: flex; justify-content: flex-end; gap: 6px;">
-        <button onclick="window.open('https://github.com', '_blank')">GitHub</button>
-        <button onclick="window.open('mailto:youremail@example.com')">Contact</button>
-      </div>
+        <fieldset style="margin-top: 8px;">
+          <legend>Featured Projects</legend>
+          <ul class="tree-view" style="background: #fff; padding: 6px;">
+            <li>
+              <strong>Tools used in my works:</strong>
+              <p style="margin: 2px 0 4px 8px; font-size: 12px;">Modelling: Nomad Sculpt | Visuals: ibis Paint X</p>
+            </li>
+            <li>
+              <strong>Project 2: Mobile Utility</strong>
+              <p style="margin: 2px 0 0 8px; font-size: 12px;">Custom mobile utility built on Android/Sketchware.</p>
+            </li>
+          </ul>
+        </fieldset>
 
-      <div class="status-bar">
-        <p class="status-bar-field">Status: Ready</p>
-        <p class="status-bar-field">CPU Usage: 2%</p>
+        <div style="margin-top: 12px; display: flex; justify-content: flex-end; gap: 6px;">
+          <button onclick="window.open('https://github.com/jackdoesgfx', '_blank')">GitHub</button>
+          <button onclick="window.open('mailto:youremail@example.com')">Contact</button>
+        </div>
+
+        <div class="status-bar">
+          <p class="status-bar-field">Status: Ready</p>
+          <p class="status-bar-field">CPU Usage: 2%</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Taskbar -->
+  <!-- Flush Taskbar -->
   <div class="taskbar">
     <button class="start-button">
-      <!-- Authentic Windows 95 Start Flag Icon -->
-      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="16" height="16" alt="Start" />
+      <!-- Direct Win95 Start Flag Icon Asset -->
+      <img class="taskbar-icon" src="https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/start.png" alt="Start" />
       Start
     </button>
     <button class="taskbar-item active">
-      <img src="https://win95icons.baltazarorchestra.com/static/images/icons/executable-0.png" width="14" height="14" alt="App" />
+      <!-- Direct Win95 App Executable Icon Asset -->
+      <img class="taskbar-icon" src="https://raw.githubusercontent.com/rn10950/Windows95-HTML/master/system/icons/programs24.png" alt="App" />
       User_Portfolio.exe
     </button>
   </div>
@@ -175,12 +197,11 @@
       windowElement.style.top = `${clientY - offsetY}px`;
     };
 
-    /* Mouse Events */
+    /* Mouse & Touch Handlers */
     titleBar.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
     document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
     document.addEventListener('mouseup', () => isDragging = false);
 
-    /* Mobile Touch Events */
     titleBar.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       startDrag(touch.clientX, touch.clientY);
