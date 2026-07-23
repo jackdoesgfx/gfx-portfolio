@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfolio - Windows 95 Edition</title>
   
-  <!-- Rock-solid Windows CSS framework -->
   <link rel="stylesheet" href="https://unpkg.com/98.css" />
 
   <style>
@@ -19,12 +18,12 @@
       user-select: none;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
+      padding-top: 25px;
     }
 
-    /* Window Container */
     .window-container {
-      position: absolute;
+      position: relative;
       width: 92vw;
       max-width: 450px;
       z-index: 10;
@@ -53,7 +52,6 @@
       margin-top: 12px;
     }
 
-    /* Bottom Taskbar */
     .taskbar {
       position: fixed;
       bottom: 0;
@@ -85,7 +83,6 @@
 </head>
 <body>
 
-  <!-- Window -->
   <div class="window window-container" id="portfolioWindow">
     <div class="title-bar" id="windowTitleBar">
       <div class="title-bar-text">User_Portfolio.exe</div>
@@ -136,7 +133,6 @@
     </div>
   </div>
 
-  <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">
       <img src="https://win95icons.baltazarorchestra.com/static/images/icons/win95_start.png" width="14" height="14" alt="start" />
@@ -165,12 +161,10 @@
       windowElement.style.top = `${clientY - offsetY}px`;
     };
 
-    // Mouse support
     titleBar.addEventListener('mousedown', (e) => startDrag(e.clientX, e.clientY));
     document.addEventListener('mousemove', (e) => moveDrag(e.clientX, e.clientY));
     document.addEventListener('mouseup', () => isDragging = false);
 
-    // Mobile touch support
     titleBar.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       startDrag(touch.clientX, touch.clientY);
